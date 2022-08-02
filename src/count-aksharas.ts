@@ -13,8 +13,6 @@ export interface Stats {
 export const countAksharas = (str: string): Stats => {
   const aksharas = getAksharas(str);
 
-  console.log(aksharas);
-
   const valid = aksharas.filter(({ type }) => type !== AksharaType.IN);
 
   const total = valid.length;

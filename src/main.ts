@@ -1,7 +1,8 @@
+import "./style.css";
+
 import { countAksharas, Stats } from "./count-aksharas";
 
-const inputEle =
-  document.querySelector<HTMLTextAreaElement>("#app > textarea")!;
+const inputEle = document.querySelector<HTMLTextAreaElement>("#app textarea")!;
 
 const statEles = [
   "stats-total",
@@ -27,6 +28,7 @@ const updateStats = (stats: Stats) => {
     stats.totalChars,
     stats.totalInvalidChars,
   ];
+
   statEles.forEach(
     (statEle, i) => statEle && (statEle.innerHTML = $stats[i].toString())
   );
@@ -35,15 +37,11 @@ const updateStats = (stats: Stats) => {
 inputEle.addEventListener("input", () => {
   const stats = countAksharas(inputEle.value);
 
-  console.log(stats);
-
   updateStats(stats);
 });
 
 window.addEventListener("load", () => {
   const stats = countAksharas(inputEle.value);
-
-  console.log(stats);
 
   updateStats(stats);
 });
