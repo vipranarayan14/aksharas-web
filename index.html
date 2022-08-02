@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/vfavicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Aksharas</title>
   </head>
@@ -11,38 +11,95 @@
       <div id="app">
         <div class="stats">
           <div class="stats-total">
-            <span class="stats-content"></span>
+            <span class="stats-content">-</span>
           </div>
           <div class="stats-total-aksharas">
             <span class="stats-title">Aksharas</span>
-            <span class="stats-content"></span>
+            <span class="stats-content">-</span>
           </div>
           <div class="stats-total-symbols">
             <span class="stats-title">Symbols</span>
-            <span class="stats-content"></span>
+            <span class="stats-content">-</span>
           </div>
           <div class="stats-total-others">
             <span class="stats-title">Others</span>
-            <span class="stats-content"></span>
+            <span class="stats-content">-</span>
           </div>
-        </div>
 
-        <textarea></textarea>
-
-        <div class="stats">
           <div class="stats-total-varnas">
             <span class="stats-title">Varnas</span>
-            <span class="stats-content"></span>
+            <span class="stats-content">-</span>
           </div>
           <div class="stats-total-chars">
             <span class="stats-title">Chars</span>
-            <span class="stats-content"></span>
+            <span class="stats-content">-</span>
           </div>
           <div class="stats-total-invalids">
             <span class="stats-title">Invalid</span>
-            <span class="stats-content"></span>
+            <span class="stats-content">-</span>
           </div>
         </div>
+
+        <div class="editor">
+          <textarea placeholder="Write or paste here..." autofocus></textarea>
+        </div>
+      </div>
+
+      <div id="docs">
+        <h1>Aksharas</h1>
+
+        <p>
+          <strong>Aksharas</strong> is an utility webapp for knowing the number
+          of <em>akṣaras</em> and <em>varṇas</em> in an Indic text. It currently
+          supports only Devanagari (Sanskrit).
+        </p>
+
+        <h2>Legend</h2>
+
+        The overall count represents the total number of Devanagari
+        <em>akṣaras</em>, Devanagari symbols (१, २, ।, ॥, ॐ, etc.) and
+        non-devangari chararacters (i.e. characters in other scripts, special
+        characters, whitespace characters, etc.)
+
+        <h3>Aksharas</h3>
+        <p>
+          Devanagari syllables like रा, मः, etc. are <strong>Aksharas</strong>.
+          Here, <em>halanta</em> consonants such as क्, च्, य्, etc. are also
+          counted as <strong>Aksharas</strong> when they are at the end of a
+          word.
+        </p>
+
+        <h3>Varnas</h3>
+        <p>
+          <strong>Varnas</strong> represent the total number of consonants and
+          vowels in the text.
+        </p>
+
+        <h3>Symbols</h3>
+        <p>
+          <strong>Symbols</strong> are Devanagari symbols such as १, २, ।, ॥, ॐ,
+          etc.
+        </p>
+
+        <h3>Others</h3>
+        <p>
+          The total number of non-devangari chararacters (characters in other
+          scripts, special characters, whitespace characters, etc.) is displayed
+          in <strong>Others</strong>.
+        </p>
+
+        <h3>Chars</h3>
+        <p>
+          <strong>Chars</strong> show the total number of unicode characters in
+          the text.
+        </p>
+
+        <h3>Invalid</h3>
+        <p>
+          A <em>virāma</em> which is not preceded by a consonant, and two or
+          more consecutive vowel marks like in "गोु", etc. are considered
+          <strong>Invalid</strong> characters.
+        </p>
       </div>
     </main>
     <script type="module" src="/src/main.ts"></script>
