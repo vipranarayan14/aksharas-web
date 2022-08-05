@@ -8,9 +8,9 @@ export enum AksharaType {
 }
 
 export interface Akshara {
-  char: string;
-  varnas: number;
+  value: string;
   type: AksharaType;
+  varnas: number;
 }
 
 const CharType = {
@@ -44,21 +44,21 @@ export const getAksharas = (str: string): Akshara[] => {
   let type: AksharaType = AksharaType.OT;
 
   if ([...CharType.VO].includes(firstCharType)) {
-    aksharas.push({ char: firstChar, varnas: 1, type: AksharaType.AK });
+    aksharas.push({ value: firstChar, type: AksharaType.AK, varnas: 1 });
   }
 
   if ([...CharType.SY].includes(firstCharType)) {
-    aksharas.push({ char: firstChar, varnas, type: AksharaType.SY });
+    aksharas.push({ value: firstChar, type: AksharaType.SY, varnas });
   }
 
   if ([...CharType.ND].includes(firstCharType)) {
-    aksharas.push({ char: firstChar, varnas, type: AksharaType.OT });
+    aksharas.push({ value: firstChar, type: AksharaType.OT, varnas });
   }
 
   if (
     [...CharType.MA, ...CharType.VI, ...CharType.NP].includes(firstCharType)
   ) {
-    aksharas.push({ char: firstChar, varnas, type: AksharaType.IN });
+    aksharas.push({ value: firstChar, type: AksharaType.IN, varnas });
   }
 
   if ([...CharType.CO].includes(firstCharType)) {
@@ -73,7 +73,7 @@ export const getAksharas = (str: string): Akshara[] => {
 
     if ([...CharType.ES].includes(nextCharType)) {
       isCollectingConjunct = false;
-      if (acc) aksharas.push({ char: acc, varnas, type });
+      if (acc) aksharas.push({ value: acc, type, varnas });
       acc = "";
       varnas = 0;
       continue;
@@ -81,7 +81,7 @@ export const getAksharas = (str: string): Akshara[] => {
 
     if ([...CharType.VO].includes(nextCharType)) {
       isCollectingConjunct = false;
-      if (acc) aksharas.push({ char: acc, varnas, type });
+      if (acc) aksharas.push({ value: acc, type, varnas });
       acc = nextChar;
       varnas = 1;
       type = AksharaType.AK;
@@ -90,7 +90,7 @@ export const getAksharas = (str: string): Akshara[] => {
 
     if ([...CharType.SY].includes(nextCharType)) {
       isCollectingConjunct = false;
-      if (acc) aksharas.push({ char: acc, varnas, type });
+      if (acc) aksharas.push({ value: acc, type, varnas });
       acc = nextChar;
       varnas = 0;
       type = AksharaType.SY;
@@ -99,7 +99,7 @@ export const getAksharas = (str: string): Akshara[] => {
 
     if ([...CharType.ND].includes(nextCharType)) {
       isCollectingConjunct = false;
-      if (acc) aksharas.push({ char: acc, varnas, type });
+      if (acc) aksharas.push({ value: acc, type, varnas });
       acc = nextChar;
       varnas = 0;
       type = AksharaType.OT;
@@ -126,7 +126,7 @@ export const getAksharas = (str: string): Akshara[] => {
 
     if ([...CharType.CO].includes(nextCharType)) {
       if (!isCollectingConjunct) {
-        if (acc) aksharas.push({ char: acc, varnas, type });
+        if (acc) aksharas.push({ value: acc, type, varnas });
         acc = nextChar;
         varnas = 0;
       } else {
