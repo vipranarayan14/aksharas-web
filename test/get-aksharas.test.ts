@@ -7,6 +7,6 @@ testData.forEach((data) => {
   const chars = getAksharas(data.testStr);
 
   test("getChars", () => {
-    expect(chars).toEqual(data.expectedChars);
+    expect(chars).toEqual(data.expectedAksharas);
   });
 });
