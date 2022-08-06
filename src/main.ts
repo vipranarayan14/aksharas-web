@@ -12,6 +12,9 @@ const statEles = [
   "stats-total-varnas",
   "stats-total-chars",
   "stats-total-invalids",
+  "stats-total-words",
+  "stats-word-frequency",
+  "stats-char-frequency"
 ].map((className) =>
   document.querySelector<HTMLSpanElement>(
     `#app .stats .${className} .stats-content`
@@ -29,6 +32,9 @@ const updateStats = () => {
     stats.totalVarnas,
     stats.totalChars,
     stats.totalInvalidChars,
+    stats.totalWordCount,
+    stats.wordFrequency,
+    stats.charFrequency,
   ];
 
   statEles.forEach(

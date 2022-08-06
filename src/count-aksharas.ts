@@ -8,6 +8,9 @@ export interface Stats {
   totalSymbols: number;
   totalOtherChars: number;
   totalInvalidChars: number;
+  totalWordCount: number;
+  wordFrequency: string[];
+  charFrequency: string[];
 }
 
 export const countAksharas = (str: string): Stats => {
@@ -31,6 +34,15 @@ export const countAksharas = (str: string): Stats => {
   const totalInvalidChars = aksharas.filter(
     ({ type }) => type === AksharaType.IN
   ).length;
+  const totalWordCount = aksharas.filter(
+    ({ type }) => type === AksharaType.WD
+  ).length;
+  const wordFrequency = aksharas.filter(
+    wordFreqObj => wordFreqObj.type === AksharaType.WF).map(
+    wordFreqObj => wordFreqObj.value);
+    const charFrequency = aksharas.filter(
+    charFreqObj => charFreqObj.type === AksharaType.CF).map(
+    charFreqObj => charFreqObj.value);
 
   return {
     total,
@@ -40,5 +52,8 @@ export const countAksharas = (str: string): Stats => {
     totalSymbols,
     totalOtherChars,
     totalInvalidChars,
+    totalWordCount,
+    wordFrequency,
+    charFrequency
   };
 };

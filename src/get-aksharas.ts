@@ -5,6 +5,9 @@ export enum AksharaType {
   SY = "symbol",
   OT = "other",
   IN = "invalid",
+  WD = "words",
+  WF = "wordfreq",
+  CF = "charfreq"
 }
 
 export interface Akshara {
@@ -37,6 +40,8 @@ export const getAksharas = (str: string): Akshara[] => {
 
   const firstChar = str[0];
   const firstCharType = getCharType(str[0]);
+  type chars = {[key: string]: number};
+  let charFreqMap: chars = {};
 
   let acc: string = "";
   let varnas: number = 0;
@@ -67,9 +72,14 @@ export const getAksharas = (str: string): Akshara[] => {
     type = AksharaType.AK;
   }
 
+  charFreqMap[firstChar] = 1
   for (let i = 0, l = str.length - 1; i <= l; i += 1) {
     const nextChar = str[i + 1];
     const nextCharType = getCharType(nextChar);
+
+    if (nextChar != " " && nextCharType != CharType.ES[0] ) {
+      charFreqMap[nextChar] = charFreqMap[nextChar] ? charFreqMap[nextChar] + 1 : 1;
+    }
 
     if ([...CharType.ES].includes(nextCharType)) {
       isCollectingConjunct = false;
@@ -141,6 +151,35 @@ export const getAksharas = (str: string): Akshara[] => {
       continue;
     }
   }
+
+  // Word count & Word frequency
+  let wordCount = 0;
+  // let words = str.replace(/[\t\n\r\.\?\!]/gm, " ").split(/\s/)
+  let words = str.replace(/[\t\n\r\.\?\!]/gm, " ").split(/\s/)
+  type wordfreq = {[key: string]: number};
+  var wordfreqMap: wordfreq = {};
+
+  words.map((s) => {
+    let trimStr = s.trim();
+    if (trimStr.length > 0) {
+      wordCount ++
+      if (!wordfreqMap[s]) {
+        wordfreqMap[s] = 0;
+      }
+      wordfreqMap[s] += 1;
+      aksharas.push({ value: wordCount +"", type: AksharaType.WD, varnas: 0 });
+    }
+  });
+
+  //Word frequency
+  Object.keys(wordfreqMap).sort().forEach(function(word) {
+    aksharas.push({ value: word + ":" + wordfreqMap[word], type: AksharaType.WF, varnas: 0 });
+  });
+
+  //Character Frequency
+  Object.keys(charFreqMap).sort().forEach(function(char) {
+    aksharas.push({ value: char + ":" + charFreqMap[char], type: AksharaType.CF, varnas: 0 });
+  });
 
   return aksharas;
 };
