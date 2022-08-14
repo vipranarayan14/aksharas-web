@@ -76,8 +76,13 @@ main,
   margin: 45px 10px;
 }
 
-#docs h1 {
+#docs h1,
+#docs footer {
   text-align: center;
+}
+
+#docs footer * {
+  margin: 2.5px 0;
 }
 
 #docs h3 {
