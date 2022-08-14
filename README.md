@@ -1,6 +1,4 @@
 # Aksharas
 
-**Aksharas** is an utility web-app for knowing the number
-of *akṣaras* and *varṇas* in an Indic text. It currently
-supports only Devanagari (Sanskrit).
+**Aksharas** is an utility web-app for analysing the *akṣaras* and *varṇas* in a Devanagari text.
 
