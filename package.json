@@ -1,7 +1,7 @@
 {
   "name": "@vipran/aksharas-web",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Aksharas is an utility web-app for analysing the akṣaras and varṇas in a Devanagari text.",
   "author": "Prasanna Venkatesh T S <vipranarayan14@gmail.com>",
   "main": "index.js",
