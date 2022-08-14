@@ -7,9 +7,12 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "check": "tsc",
     "dev": "vite --port 3000",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "build": "npm run check && vite build",
+    "preview": "npm run build && vite preview",
+    "preversion": "npm run check",
+    "release": "git push && git push --tags"
   },
   "devDependencies": {
     "typescript": "^4.6.4",
