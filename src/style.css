@@ -1,10 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap");
-
 html,
 body {
   margin: 0;
   padding: 0;
   font-size: 16px;
+  font-family: "Noto Sans", sans-serif;
 }
 
 body {
@@ -15,9 +14,8 @@ main {
   margin: 5px;
 }
 
-main,
 #app * {
-  font-family: "Noto Sans", sans-serif;
+  font-family: inherit;
 }
 
 #app .stats {
