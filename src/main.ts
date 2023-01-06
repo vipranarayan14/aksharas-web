@@ -5,16 +5,16 @@ import { getStats } from "./get-stats";
 const inputEle = document.querySelector<HTMLTextAreaElement>("#app textarea")!;
 
 const statEles = [
-  "stats-total",
-  "stats-total-aksharas",
-  "stats-total-symbols",
-  "stats-total-others",
-  "stats-total-varnas",
-  "stats-total-chars",
-  "stats-total-invalids",
+  "counter-total",
+  "counter-total-aksharas",
+  "counter-total-symbols",
+  "counter-total-others",
+  "counter-total-varnas",
+  "counter-total-chars",
+  "counter-total-invalids",
 ].map((className) =>
   document.querySelector<HTMLSpanElement>(
-    `#app .stats .${className} .stats-content`
+    `#app .stats .${className} .counter-content`
   )
 );
 
