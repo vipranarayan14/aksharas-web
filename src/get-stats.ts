@@ -20,7 +20,7 @@ export const getStats = (str: string): Stats => {
   return {
     total: validTokens.length,
     totalChars: results.chars.length,
-    totalVarnas: results.varnasLength,
+    totalVarnas: results.varnas.length,
     totalAksharas: results.aksharas.length,
     totalSymbols: results.symbols.length,
     totalOtherChars: results.whitespaces.length + results.unrecognised.length,
