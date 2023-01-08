@@ -10,6 +10,9 @@ const statEles = [
   "counter-total-symbols",
   "counter-total-others",
   "counter-total-varnas",
+  "counter-total-svaras",
+  "counter-total-vyanjanas",
+  "counter-total-spaces",
   "counter-total-chars",
   "counter-total-invalids",
 ].map((className) =>
@@ -27,6 +30,9 @@ const updateStats = () => {
     stats.totalSymbols,
     stats.totalOtherChars,
     stats.totalVarnas,
+    stats.totalSvaras,
+    stats.totalVyanjanas,
+    stats.totalSpaces,
     stats.totalChars,
     stats.totalInvalidChars,
   ];

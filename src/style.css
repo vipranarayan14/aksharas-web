@@ -60,21 +60,24 @@ main {
   grid-template-columns: minmax(25%, min-content) repeat(3, 1fr);
 }
 
-#app .stats.basic-stats > *:first-child {
+#app .stats.basic-stats .counter-total {
   font-size: 4rem;
-  /* grid-row: 1 / span 2; */
   padding: 5px;
   line-height: 1.2em;
 }
 
 #app .more-stats-container {
+  display: grid;
+  grid-template-columns: auto;
+  column-gap: 10px;
+  row-gap: 10px;
   margin: 20px auto;
 }
 
 #app .stats.more-stats {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr auto) 1fr;
   padding: 10px 0;
   background-color: var(--card-bg-light);
   box-shadow: var(--card-shadow);
@@ -134,5 +137,9 @@ main {
   main {
     width: 700px;
     margin: auto;
+  }
+
+  #app .more-stats-container {
+    grid-template-columns: 1fr 1fr;
   }
 }

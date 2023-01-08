@@ -1,14 +1,23 @@
-import Aksharas from "@vipran/aksharas";
+import Aksharas, { VarnaType } from "@vipran/aksharas";
 
 export interface Stats {
   total: number;
-  totalChars: number;
-  totalVarnas: number;
   totalAksharas: number;
-  totalSymbols: number;
-  totalOtherChars: number;
+  totalChars: number;
   totalInvalidChars: number;
+  totalOtherChars: number;
+  totalSpaces: number;
+  totalSvaras: number;
+  totalSymbols: number;
+  totalVarnas: number;
+  totalVyanjanas: number;
 }
+
+const filterVarnas = (varnas: any[], varnaType: VarnaType) =>
+  varnas.filter((varna) => varna.type === varnaType);
+
+const filterSpaces = (tokens: any[]) =>
+  tokens.filter((token) => token.value === " ");
 
 export const getStats = (str: string): Stats => {
   const results = Aksharas.analyse(str);
@@ -19,11 +28,14 @@ export const getStats = (str: string): Stats => {
 
   return {
     total: validTokens.length,
-    totalChars: results.chars.length,
-    totalVarnas: results.varnas.length,
     totalAksharas: results.aksharas.length,
-    totalSymbols: results.symbols.length,
-    totalOtherChars: results.whitespaces.length + results.unrecognised.length,
+    totalChars: results.chars.length,
     totalInvalidChars: results.invalid.length,
+    totalOtherChars: results.whitespaces.length + results.unrecognised.length,
+    totalSpaces: filterSpaces(results.whitespaces).length,
+    totalSvaras: filterVarnas(results.varnas, VarnaType.Svara).length,
+    totalSymbols: results.symbols.length,
+    totalVarnas: results.varnas.length,
+    totalVyanjanas: filterVarnas(results.varnas, VarnaType.Vyanjana).length,
   };
 };
