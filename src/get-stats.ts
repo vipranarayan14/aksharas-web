@@ -1,4 +1,4 @@
-import Aksharas, { VarnaType } from "@vipran/aksharas";
+import { VarnaType, TokenType } from "@vipran/aksharas";
 
 export interface Stats {
   total: number;
@@ -19,11 +19,9 @@ const filterVarnas = (varnas: any[], varnaType: VarnaType) =>
 const filterSpaces = (tokens: any[]) =>
   tokens.filter((token) => token.value === " ");
 
-export const getStats = (str: string): Stats => {
-  const results = Aksharas.analyse(str);
-
+export const getStats = (results: any): Stats => {
   const validTokens = results.all.filter(
-    (token) => token.type !== Aksharas.TokenType.Invalid
+    (token: any) => token.type !== TokenType.Invalid
   );
 
   return {
