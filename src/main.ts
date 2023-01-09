@@ -1,41 +1,17 @@
 import "./style.css";
 
-import { getStats } from "./get-stats";
+import { renderStats } from "./stats";
+import { renderAnalysis } from "./analysis";
 
 const inputEle = document.querySelector<HTMLTextAreaElement>("#app textarea")!;
 
-const statEles = [
-  "stats-total",
-  "stats-total-aksharas",
-  "stats-total-symbols",
-  "stats-total-others",
-  "stats-total-varnas",
-  "stats-total-chars",
-  "stats-total-invalids",
-].map((className) =>
-  document.querySelector<HTMLSpanElement>(
-    `#app .stats .${className} .stats-content`
-  )
-);
+const renderResults = () => {
+  const input = inputEle.value;
 
-const updateStats = () => {
-  const stats = getStats(inputEle.value);
-
-  const $stats = [
-    stats.total,
-    stats.totalAksharas,
-    stats.totalSymbols,
-    stats.totalOtherChars,
-    stats.totalVarnas,
-    stats.totalChars,
-    stats.totalInvalidChars,
-  ];
-
-  statEles.forEach(
-    (statEle, i) => statEle && (statEle.innerHTML = $stats[i].toString())
-  );
+  renderStats(input);
+  renderAnalysis(input);
 };
 
-inputEle.addEventListener("input", updateStats);
+inputEle.addEventListener("input", renderResults);
 
-window.addEventListener("load", updateStats);
+window.addEventListener("load", renderResults);

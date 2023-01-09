@@ -15,7 +15,7 @@
     "release": "git push && git push --tags"
   },
   "dependencies": {
-    "@vipran/aksharas": "^0.3.2"
+    "@vipran/aksharas": "^0.4.0"
   },
   "devDependencies": {
     "typescript": "^4.6.4",

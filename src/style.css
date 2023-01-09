@@ -1,3 +1,14 @@
+:root {
+  --bg: #f5f5f5;
+  /* --bg: #fbf8f0; */
+  --card-bg: #ffffff;
+  --card-bg-light: #fefefe;
+  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  --card-corner-radius: 3px;
+  --error: #e90000;
+  --info: #4e4e4e;
+}
+
 html,
 body {
   margin: 0;
@@ -7,7 +18,7 @@ body {
 }
 
 body {
-  background-color: #f5f5f5;
+  background-color: var(--bg);
 }
 
 main {
@@ -18,40 +29,158 @@ main {
   font-family: inherit;
 }
 
+#app .card {
+  background-color: var(--card-bg-light);
+  box-shadow: var(--card-shadow);
+  border-radius: var(--card-corner-radius);
+}
+
 #app .stats {
-  display: grid;
-  gap: 5px;
-  grid-template-columns: minmax(25%, min-content) repeat(3, 1fr);
   font-size: 1.7rem;
   align-items: center;
   padding: 5px;
 }
 
-#app .stats > * {
+#app .stats .counter {
   text-align: center;
-  border-radius: 10px;
   display: flex;
   flex-direction: column;
 }
 
-#app .stats > *:first-child {
-  font-size: 4rem;
-  grid-row: 1 / span 2;
-  padding: 5px;
-}
-
-#app .stats .stats-title {
+#app .stats .counter-title {
   text-transform: uppercase;
   font-size: 0.8rem;
+}
+
+#app .stats .divider {
+  width: 1px;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+#app .stats .divider::before {
+  content: "\200B";
+}
+
+#app .stats.basic-stats {
+  display: grid;
+  gap: 5px;
+  grid-template-columns: minmax(25%, min-content) repeat(3, 1fr);
+}
+
+#app .stats.basic-stats .counter-total {
+  font-size: 4rem;
+  padding: 5px;
+  line-height: 1.2em;
+}
+
+#app .more-stats-container {
+  display: grid;
+  grid-template-columns: auto;
+  column-gap: 10px;
+  row-gap: 10px;
+  margin: 20px auto;
+}
+
+#app .stats.more-stats {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr auto) 1fr;
+  padding: 10px 0;
+  margin: auto;
+}
+
+#app .stats.more-stats .counter-total-invalids.error {
+  color: var(--error);
+}
+
+#app .analysis .analysis-title {
+  font-weight: bold;
+  font-size: 1.3rem;
+  text-align: center;
+  margin: 10px auto;
+}
+
+#app .analysis .analysis-content {
+  padding: 0 10px;
+}
+
+#app .analysis .placeholder {
+  text-align: center;
+  padding: 20px 0;
+  font-size: 0.8rem;
+  color: var(--info);
+  max-width: 300px;
+  margin: auto;
+}
+
+#app .analysis .analysis-item {
+  padding: 10px 5px;
+}
+
+#app .analysis .analysis-item .header {
+  font-weight: bold;
+  text-align: center;
+  max-width: 80%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 5px auto;
+  font-size: 1.1rem;
+}
+
+#app .analysis .analysis-item .details {
+  margin: 15px 0;
+  /* display: flex; */
+}
+
+#app .analysis .analysis-item .details .title {
+  font-weight: bold;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  display: inline-block;
+  margin: 5px auto;
+}
+
+#app .analysis .analysis-item .details .counters {
+  display: inline-block;
+}
+
+#app .analysis .analysis-item .details .counters > * {
+  font-size: 0.9rem;
+  background-color: var(--info);
+  /* background-color: #3c5d95; */
+  color: white;
+  padding: 1px 8px;
+  border-radius: 5px;
+  margin: 0 2px;
+}
+
+#app .analysis .analysis-item .details .counters > *.invalid {
+  background-color: var(--error);
+  /* background-color: #cd0a0a; */
+}
+
+#app .analysis .analysis-item .details .content {
+  word-wrap: break-word;
+  font-size: 1.1rem;
+}
+
+#app .analysis .analysis-item .details .content .invalid {
+  border: 1px solid var(--error);
+  background-color: #ffe7e7;
+}
+
+#app .analysis .analysis-item:not(:last-child) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 #app .editor {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border-radius: 6px;
-  background-color: white;
+  background-color: var(--card-bg);
   position: relative;
   padding: 10px;
-  /* margin: 5px; */
+  margin: 5px auto;
 }
 
 #app .editor textarea {
@@ -61,7 +190,7 @@ main {
   outline: none;
   border: none;
   resize: none;
-  height: 400px;
+  height: 350px;
   line-height: 1.7;
   font-size: inherit;
 }
@@ -97,5 +226,28 @@ main {
   main {
     width: 700px;
     margin: auto;
+  }
+
+  #app .more-stats-container {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  #app .analysis .analysis-item {
+    display: grid;
+    grid-template-columns: 25% 1fr 1fr;
+    column-gap: 5px;
+  }
+
+  #app .analysis .analysis-item .header {
+    /* margin: unset; */
+    overflow: auto;
+    text-overflow: unset;
+    word-wrap: break-word;
+    margin: 5px 0;
+    text-align: left;
+  }
+
+  #app .analysis .analysis-item .details {
+    margin: 0 5px;
   }
 }
