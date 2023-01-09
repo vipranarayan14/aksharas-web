@@ -22,11 +22,11 @@ const analysisEle = document.querySelector<HTMLElement>(
 const analysisPlaceholder = analysisEle?.innerHTML;
 
 const getAnalysis = (input: string): Analysis[] => {
-  const wordBoundary = /[\s।॥,.]/;
+  const wordBoundary = /[\s।॥!,\.\(\)\{\}\[\]&=]/;
 
   const words = input.split(wordBoundary).filter((word) => !!word);
 
-  return words.map((word) => {
+  return words.reduce((acc: Analysis[], word) => {
     const results = Aksharas.analyse(word);
 
     const aksharas = results.all
@@ -37,6 +37,7 @@ const getAnalysis = (input: string): Analysis[] => {
         value,
         isInvalid: token.type === TokenType.Invalid,
       }));
+
     const varnas = results.varnas.map((varna) => varna.value);
 
     const analysis = {
@@ -48,11 +49,13 @@ const getAnalysis = (input: string): Analysis[] => {
       varnasCount: results.varnas.length,
     };
 
-    return analysis;
-  });
+    if (analysis.aksharas.length < 1) return acc;
+
+    return acc.concat(analysis);
+  }, []);
 };
 
-const createAnalysisItem = (analysis: Analysis) => {
+const createAnalysisItem = (analysis: Analysis): string => {
   const { aksharasCount, invalidCount, varnasCount } = analysis;
 
   const header = sanitize(analysis.word);
