@@ -19,6 +19,8 @@ const analysisEle = document.querySelector<HTMLElement>(
   "#app .analysis-content"
 );
 
+const analysisPlaceholder = analysisEle?.innerHTML;
+
 const getAnalysis = (input: string): Analysis[] => {
   const wordBoundary = /[\s।॥,.]/;
 
@@ -87,15 +89,10 @@ const createAnalysisItem = (analysis: Analysis) => {
     </div>`;
 };
 
-const analysisPlaceholder = `
-    <div class="placeholder">
-      Enter your text in the editor to see the analysis of the aksharas and varnas in it.
-    </div>`;
-
 const $renderAnalysis = (analyses: Analysis[]) => {
   if (!analysisEle) return;
 
-  let content = analysisPlaceholder;
+  let content = analysisPlaceholder || "N/A";
 
   if (analyses.length > 0) {
     content = analyses.map(createAnalysisItem).join("");
