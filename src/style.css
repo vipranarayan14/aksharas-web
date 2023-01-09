@@ -29,6 +29,12 @@ main {
   font-family: inherit;
 }
 
+#app .card {
+  background-color: var(--card-bg-light);
+  box-shadow: var(--card-shadow);
+  border-radius: var(--card-corner-radius);
+}
+
 #app .stats {
   font-size: 1.7rem;
   align-items: center;
@@ -76,18 +82,16 @@ main {
   margin: 20px auto;
 }
 
-#app .card {
-  background-color: var(--card-bg-light);
-  box-shadow: var(--card-shadow);
-  border-radius: var(--card-corner-radius);
-}
-
 #app .stats.more-stats {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr auto) 1fr;
   padding: 10px 0;
   margin: auto;
+}
+
+#app .stats.more-stats .counter-total-invalids.error {
+  color: var(--error);
 }
 
 #app .analysis .analysis-title {

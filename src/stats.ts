@@ -25,7 +25,7 @@ const statEles = [
   "counter-total-chars",
   "counter-total-invalids",
 ].map((className) =>
-  document.querySelector<HTMLSpanElement>(
+  document.querySelector<HTMLElement>(
     `#app .stats .${className} .counter-content`
   )
 );
@@ -56,6 +56,10 @@ const getStats = (results: any): Stats => {
 };
 
 const $renderStats = (stats: Stats) => {
+  const invalidsCounter = statEles.at(-1);
+
+  invalidsCounter?.parentElement?.classList.remove("error");
+
   const $stats = [
     stats.total,
     stats.totalAksharas,
@@ -72,6 +76,10 @@ const $renderStats = (stats: Stats) => {
   statEles.forEach(
     (statEle, i) => statEle && (statEle.innerHTML = $stats[i].toString())
   );
+
+  if (stats.totalInvalidChars > 0) {
+    invalidsCounter?.parentElement?.classList.add("error");
+  }
 };
 
 export const renderStats = (input: string) => {
